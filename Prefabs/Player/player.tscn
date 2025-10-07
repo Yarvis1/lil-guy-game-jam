@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://dg7q77bycgfq1"]
+
+[ext_resource type="Script" uid="uid://bb345oead7thx" path="res://Prefabs/Player/Player.cs" id="1_5wxv7"]
+[ext_resource type="Texture2D" uid="uid://bd4ue44aahvx3" path="res://Sprites/Spritesheet.png" id="1_y6xdh"]
+[ext_resource type="Script" uid="uid://dtv0p8rov2kk4" path="res://Prefabs/Player/pMovement.cs" id="3_sysjd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5wxv7"]
+atlas = ExtResource("1_y6xdh")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y5hcb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5wxv7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2nftw"]
+size = Vector2(14, 15)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_5wxv7")
+
+[node name="Movement" type="Node" parent="."]
+script = ExtResource("3_sysjd")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_y5hcb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_2nftw")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+position_smoothing_enabled = true
